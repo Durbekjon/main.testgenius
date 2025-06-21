@@ -12,8 +12,7 @@ import { FloatingInput } from "@/components/auth/floating-input"
 import { PasswordStrength } from "@/components/auth/password-strength"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
-import api from "@/lib/api"
-import { API_ENDPOINTS } from "@/lib/api-endpoints"
+import { api, API_ENDPOINTS } from "@/lib/api"
 
 export default function ResetPasswordPage() {
   const router = useRouter()

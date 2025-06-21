@@ -38,6 +38,7 @@ export default function RootLayout({
 }
 
 export const metadata = {
+  metadataBase: new URL('https://testgenius.uz'),
   title: {
     default: "TestGenius AI - Create AI-Powered Tests in Seconds",
     template: "%s | TestGenius AI"
@@ -85,7 +86,6 @@ export const metadata = {
   generator: "Next.js",
   
   // Add meta tags that were previously in the manual <head>
-  themeColor: "#000000",
   manifest: "/manifest.json",
   icons: {
     icon: "/favicon.ico",
@@ -144,4 +144,12 @@ export const metadata = {
       "uz-UZ": "https://testgenius.uz/uz",
     },
   },
+}
+
+export const viewport = {
+  themeColor: "#000000",
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }

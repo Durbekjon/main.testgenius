@@ -62,12 +62,6 @@ export function DatePickerWithRange({
             selected={date}
             onSelect={setDate}
             numberOfMonths={2}
-            labels={{
-              start: startDateLabel,
-              end: endDateLabel,
-              apply: applyLabel,
-              cancel: cancelLabel
-            }}
           />
         </PopoverContent>
       </Popover>

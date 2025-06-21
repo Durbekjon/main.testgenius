@@ -54,11 +54,11 @@ export default function ProfilePage() {
           <CardContent className="space-y-6">
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
               <Avatar className="h-24 w-24 border-4 border-background">
-                <AvatarImage src={user?.logo} alt={user?.name} />
+                <AvatarImage src={user?.logo} alt={user ? `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.email || 'User Avatar' : 'User Avatar'} />
                 <AvatarFallback className="text-2xl">JD</AvatarFallback>
               </Avatar>
               <div className="space-y-1">
-                <h3 className="text-xl font-semibold">{user?.name}</h3>
+                <h3 className="text-xl font-semibold">{user ? `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.email : ''}</h3>
                 <p className="text-sm text-muted-foreground">{user?.email}</p>
                 <div className="flex gap-2 mt-2">
                   <Button variant="outline" size="sm" className="gap-2">
@@ -84,10 +84,12 @@ export default function ProfilePage() {
                 <Label htmlFor="email">{t("profile.email")}</Label>
                 <Input id="email" type="email" defaultValue={user?.email} />
               </div>
+              {/*
               <div className="space-y-2">
                 <Label htmlFor="phone">{t("profile.phone")}</Label>
                 <Input id="phone" type="tel" defaultValue={user?.phone} />
               </div>
+              */}
               <div className="space-y-2">
                 <Label htmlFor="location">{t("profile.location")}</Label>
                 <div className="flex items-center gap-2">
@@ -99,7 +101,7 @@ export default function ProfilePage() {
                 <Label htmlFor="occupation">{t("profile.occupation")}</Label>
                 <div className="flex items-center gap-2">
                   <Briefcase className="h-4 w-4 text-muted-foreground" />
-                  <Input id="occupation" defaultValue={user?.occupation} />
+                  {/* <Input id="occupation" defaultValue={user?.occupation} /> */}
                 </div>
               </div>
             </div>
@@ -176,8 +178,8 @@ export default function ProfilePage() {
                 <Avatar className="h-20 w-20 mb-4">
                   <AvatarImage src={user?.logo} alt={user?.firstName} />
                   <AvatarFallback className="text-xl">
-                    {user?.firstName[0]}
-                    {user?.lastName[0]}
+                    {user?.firstName?.[0] || ''}
+                    {user?.lastName?.[0] || ''}
                   </AvatarFallback>
                 </Avatar>
                 <h3 className="text-xl font-semibold">

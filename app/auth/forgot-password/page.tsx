@@ -10,8 +10,7 @@ import { AuthLayout } from "@/components/auth/auth-layout"
 import { FloatingInput } from "@/components/auth/floating-input"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
-import api from "@/lib/api"
-import { API_ENDPOINTS } from "@/lib/api-endpoints"
+import { api, API_ENDPOINTS } from "@/lib/api"
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("")

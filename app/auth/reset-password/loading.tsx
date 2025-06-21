@@ -1,9 +1,11 @@
+"use client"
+
 import { AuthLayout } from "@/components/auth/auth-layout"
 import { Skeleton } from "@/components/ui/skeleton"
-import { useTranslations } from "@/hooks/use-translations"
+import { useLanguage } from "@/contexts/language-context"
 
 export default function ResetPasswordLoading() {
-  const t = useTranslations()
+  const { t } = useLanguage()
 
   return (
     <AuthLayout 

@@ -48,7 +48,7 @@ export interface DashboardStats {
 }
 
 export class AnalyticsService {
-  private static getAuthHeader() {
+  private static getAuthHeader(): Record<string, string> {
     const token = localStorage.getItem('access_token')
     return token ? { 'Authorization': `Bearer ${token}` } : {}
   }
@@ -58,12 +58,11 @@ export class AnalyticsService {
       throw new Error('Date range is required')
     }
 
+    const headers = this.getAuthHeader()
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}${API_ENDPOINTS.ANALYTICS.DASHBOARD}?startDate=${dateRange.from.toISOString().split('T')[0]}&endDate=${dateRange.to.toISOString().split('T')[0]}&limitLatestTests=${limitLatestTests}`,
       {
-        headers: {
-          ...this.getAuthHeader()
-        }
+        headers: Object.keys(headers).length > 0 ? headers : undefined
       }
     )
 
@@ -79,13 +78,15 @@ export class AnalyticsService {
       throw new Error('Date range is required')
     }
 
+    const headers = {
+      ...this.getAuthHeader(),
+      'Accept': 'text/csv'
+    }
+    
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}${API_ENDPOINTS.ANALYTICS.DASHBOARD}/export?startDate=${dateRange.from.toISOString().split('T')[0]}&endDate=${dateRange.to.toISOString().split('T')[0]}`,
       {
-        headers: {
-          ...this.getAuthHeader(),
-          'Accept': 'text/csv'
-        }
+        headers: Object.keys(headers).length > 0 ? headers : undefined
       }
     )
 

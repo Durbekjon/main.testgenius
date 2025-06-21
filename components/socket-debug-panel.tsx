@@ -77,7 +77,7 @@ export function SocketDebugPanel() {
               <Label htmlFor="debug-enabled" className="text-xs">
                 Enabled
               </Label>
-              <Switch id="debug-enabled" checked={enabled} onCheckedChange={setEnabled} size="sm" />
+              <Switch id="debug-enabled" checked={enabled} onCheckedChange={setEnabled} />
               <Button variant="ghost" size="sm" className="h-7 px-2 text-xs" onClick={() => setExpanded(!expanded)}>
                 {expanded ? "Collapse" : "Expand"}
               </Button>
@@ -86,7 +86,7 @@ export function SocketDebugPanel() {
               </Button>
             </div>
           </div>
-          <Badge variant={isConnected ? "success" : "destructive"} className="mt-1">
+          <Badge variant={isConnected ? "default" : "secondary"} className="mt-1">
             {isConnected ? "Connected" : "Disconnected"}
           </Badge>
         </CardHeader>

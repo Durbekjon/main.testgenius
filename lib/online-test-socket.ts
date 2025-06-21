@@ -60,7 +60,7 @@ export function setupOnlineTestConnectionListeners(
     : () => {}
 
   const errorCleanup = onError
-    ? socketService.on(SOCKET_NAMESPACES.ONLINE_TEST, COMMON_EVENTS.CONNECT_ERROR, onError)
+    ? socketService.on(SOCKET_NAMESPACES.ONLINE_TEST, COMMON_EVENTS.ERROR, onError)
     : () => {}
 
   return () => {

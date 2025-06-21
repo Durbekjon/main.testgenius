@@ -17,7 +17,7 @@ export default function HomePage() {
   const teamRef = useRef<HTMLElement>(null)
 
   // Smooth scroll function
-  const scrollToSection = (elementRef: React.RefObject<HTMLElement>) => {
+  const scrollToSection = (elementRef: React.RefObject<HTMLElement | null>) => {
     if (elementRef.current) {
       window.scrollTo({
         top: elementRef.current.offsetTop - 80, // Offset for header
@@ -36,7 +36,7 @@ export default function HomePage() {
         scrollToSection(howItWorksRef)
       } else if (hash === "#pricing" && pricingRef.current) {
         scrollToSection(pricingRef)
-      } else if (hash === "#team" && teamRef.current) {
+      } else if (hash === "#team" && teamRef.current && teamRef.current !== null) {
         scrollToSection(teamRef)
       }
     }

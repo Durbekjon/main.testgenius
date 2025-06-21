@@ -192,7 +192,7 @@ export default function SignUpPage() {
     }
 
     // Verify code with API
-    setIsLoading(true);
+    setIsSubmitting(true);
 
     try {
       const response = await verifyEmail(verificationCode, verificationToken);
@@ -228,14 +228,14 @@ export default function SignUpPage() {
         variant: 'destructive',
       });
     } finally {
-      setIsLoading(false);
+      setIsSubmitting(false);
     }
   };
 
   const handleResendCode = async () => {
     if (resendCooldown > 0) return;
 
-    setIsLoading(true);
+    setIsSubmitting(true);
 
     try {
       // Get token from state or localStorage
@@ -267,7 +267,7 @@ export default function SignUpPage() {
         variant: 'destructive',
       });
     } finally {
-      setIsLoading(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -327,7 +327,7 @@ export default function SignUpPage() {
                   error={errors.name}
                   icon={<User className='h-5 w-5' />}
                   autoComplete='name'
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                 />
 
                 <FloatingInput
@@ -338,7 +338,7 @@ export default function SignUpPage() {
                   error={errors.lastName}
                   icon={<User className='h-5 w-5' />}
                   autoComplete='family-name'
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                 />
 
                 <FloatingInput
@@ -349,7 +349,7 @@ export default function SignUpPage() {
                   error={errors.email}
                   icon={<Mail className='h-5 w-5' />}
                   autoComplete='email'
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                 />
 
                 <FloatingInput
@@ -373,7 +373,7 @@ export default function SignUpPage() {
                     </button>
                   }
                   autoComplete='new-password'
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                 />
 
                 {password && <PasswordStrength password={password} />}
@@ -401,16 +401,16 @@ export default function SignUpPage() {
                     </button>
                   }
                   autoComplete='new-password'
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                 />
 
                 <div className='mt-6'>
                   <Button
                     type='submit'
                     className='h-12 w-full text-base'
-                    disabled={isLoading}
+                    disabled={isSubmitting}
                   >
-                    {isLoading ? 'Creating Account...' : 'Sign Up'}
+                    {isSubmitting ? 'Creating Account...' : 'Sign Up'}
                   </Button>
                 </div>
               </form>
@@ -449,7 +449,7 @@ export default function SignUpPage() {
                   </svg>
                 }
                 onClick={() => handleSocialSignUp('Google')}
-                disabled={isLoading}
+                disabled={isSubmitting}
               >
                 Sign up with Google
               </SocialButton>
@@ -465,7 +465,7 @@ export default function SignUpPage() {
                   </svg>
                 }
                 onClick={() => handleSocialSignUp("Meta")}
-                disabled={isLoading}
+                disabled={isSubmitting}
               >
                 Sign up with Meta
               </SocialButton>*/}
@@ -511,7 +511,7 @@ export default function SignUpPage() {
                   <button
                     type='button'
                     onClick={handleResendCode}
-                    disabled={resendCooldown > 0 || isLoading}
+                    disabled={resendCooldown > 0 || isSubmitting}
                     className='text-sm font-medium text-primary hover:underline focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50'
                   >
                     {resendCooldown > 0
@@ -525,9 +525,9 @@ export default function SignUpPage() {
                 <Button
                   type='submit'
                   className='h-12 w-full text-base'
-                  disabled={isLoading || verificationCode.length !== 6}
+                  disabled={isSubmitting || verificationCode.length !== 6}
                 >
-                  {isLoading ? 'Verifying...' : 'Verify & Continue'}
+                  {isSubmitting ? 'Verifying...' : 'Verify & Continue'}
                 </Button>
 
                 <Button
@@ -535,7 +535,7 @@ export default function SignUpPage() {
                   variant='outline'
                   className='h-12 w-full text-base'
                   onClick={() => setStep('details')}
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                 >
                   <ArrowLeft className='mr-2 h-4 w-4' />
                   Back to Sign Up

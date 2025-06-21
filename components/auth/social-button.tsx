@@ -10,6 +10,15 @@ interface SocialButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   provider: "google" | "meta"
 }
 
+function omitMotionConflictingProps<T extends object>(props: T): Omit<T, 
+  | "onDrag" | "onDragEnd" | "onDragStart" | "onDragOver" | "onDragEnter" | "onDragLeave" | "onDrop"
+  | "onAnimationStart" | "onAnimationEnd" | "onAnimationIteration"
+> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { onDrag, onDragEnd, onDragStart, onDragOver, onDragEnter, onDragLeave, onDrop, onAnimationStart, onAnimationEnd, onAnimationIteration, ...rest } = props as any
+  return rest
+}
+
 export const SocialButton = forwardRef<HTMLButtonElement, SocialButtonProps>(
   ({ icon, provider, className, children, ...props }, ref) => {
     const getProviderStyles = () => {
@@ -33,7 +42,7 @@ export const SocialButton = forwardRef<HTMLButtonElement, SocialButtonProps>(
           getProviderStyles(),
           className,
         )}
-        {...props}
+        {...omitMotionConflictingProps(props)}
       >
         {icon}
         {children}

@@ -40,28 +40,40 @@ export function VerificationCodeInput({ length = 6, onChange, error = false }: V
     setCode(newCode)
 
     // Auto-focus next input if value is entered
-    if (value && index < length - 1 && inputRefs.current[index + 1]) {
-      inputRefs.current[index + 1].focus()
+    if (value && index < length - 1) {
+      const nextInput = inputRefs.current[index + 1]
+      if (nextInput) {
+        nextInput.focus()
+      }
     }
   }
 
   const handleKeyDown = (index: number, e: KeyboardEvent<HTMLInputElement>) => {
     // Handle backspace
     if (e.key === "Backspace") {
-      if (!code[index] && index > 0 && inputRefs.current[index - 1]) {
-        inputRefs.current[index - 1].focus()
+      if (!code[index] && index > 0) {
+        const prevInput = inputRefs.current[index - 1]
+        if (prevInput) {
+          prevInput.focus()
+        }
       }
     }
 
     // Handle arrow keys
-    if (e.key === "ArrowLeft" && index > 0 && inputRefs.current[index - 1]) {
+    if (e.key === "ArrowLeft" && index > 0) {
       e.preventDefault()
-      inputRefs.current[index - 1].focus()
+      const prevInput = inputRefs.current[index - 1]
+      if (prevInput) {
+        prevInput.focus()
+      }
     }
 
-    if (e.key === "ArrowRight" && index < length - 1 && inputRefs.current[index + 1]) {
+    if (e.key === "ArrowRight" && index < length - 1) {
       e.preventDefault()
-      inputRefs.current[index + 1].focus()
+      const nextInput = inputRefs.current[index + 1]
+      if (nextInput) {
+        nextInput.focus()
+      }
     }
   }
 
@@ -75,8 +87,9 @@ export function VerificationCodeInput({ length = 6, onChange, error = false }: V
       setCode(newCode)
 
       // Focus last input
-      if (inputRefs.current[length - 1]) {
-        inputRefs.current[length - 1].focus()
+      const lastInput = inputRefs.current[length - 1]
+      if (lastInput) {
+        lastInput.focus()
       }
     }
   }
@@ -93,7 +106,9 @@ export function VerificationCodeInput({ length = 6, onChange, error = false }: V
           className="relative"
         >
           <input
-            ref={(el) => (inputRefs.current[index] = el)}
+            ref={(el) => {
+              inputRefs.current[index] = el;
+            }}
             type="text"
             inputMode="numeric"
             pattern="[0-9]*"
