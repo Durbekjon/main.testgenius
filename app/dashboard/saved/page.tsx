@@ -45,6 +45,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { FixedSizeGrid as WindowGrid } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import type { CSSProperties, ReactNode } from "react";
+import { TestPreview } from "@/components/test-preview";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 // Move handler functions outside the component
 function getFetchParams(
@@ -92,6 +94,13 @@ export default function SavedTestsPage() {
     deleteTest,
     downloadTest,
   } = useTests();
+  const [previewTest, setPreviewTest] = useState<Test | null>(null);
+  const previewDialogRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (previewTest && previewDialogRef.current) {
+      previewDialogRef.current.scrollTop = 0;
+    }
+  }, [previewTest]);
 
   // Memoize the fetch parameters to prevent unnecessary re-renders
   const fetchParams = useCallback(
@@ -196,10 +205,7 @@ export default function SavedTestsPage() {
     const test = tests[index];
     return (
       <div style={style}>
-        <Card
-          key={test.id}
-          className="overflow-hidden transition-all hover:shadow-md m-2"
-        >
+        <Card key={test.id} className="transition-all hover:shadow-md m-2">
           <CardHeader className="pb-2">
             <div className="flex items-start justify-between">
               <Input
@@ -222,6 +228,9 @@ export default function SavedTestsPage() {
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => handleTogglePublic(test)}>
                     {test.isPublic ? "Make it private" : "Make it public"}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setPreviewTest(test)}>
+                    Open in Preview
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="text-destructive"
@@ -363,6 +372,17 @@ export default function SavedTestsPage() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <Dialog open={!!previewTest} onOpenChange={() => setPreviewTest(null)}>
+        <DialogContent
+          ref={previewDialogRef}
+          className="max-w-4xl w-full flex justify-center items-center p-0 pt-6"
+          style={{ maxHeight: "90vh", overflowY: "auto" }}
+        >
+          <DialogTitle className="sr-only">Test Preview</DialogTitle>
+          {previewTest && <TestPreview testData={previewTest as any} />}
+        </DialogContent>
+      </Dialog>
 
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>

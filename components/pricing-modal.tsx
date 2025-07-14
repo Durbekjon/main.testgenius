@@ -109,11 +109,7 @@ function PaymentForm({
 
 export function PricingModal({ open, onOpenChange }: PricingModalProps) {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
-  const [testAccess, setTestAccess] = useState<{
-    code: string;
-    qrCode: string;
-    link: string;
-  } | null>(null);
+
   const { t } = useLanguage();
   const { refreshUser } = useAuth();
 
@@ -164,18 +160,6 @@ export function PricingModal({ open, onOpenChange }: PricingModalProps) {
     }
   };
 
-  const handleCopyToClipboard = (text: string) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        // Could add a toast notification here
-        console.log("Copied to clipboard");
-      })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-      });
-  };
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[800px]">
@@ -211,10 +195,12 @@ export function PricingModal({ open, onOpenChange }: PricingModalProps) {
                     key={pack.id}
                     className={cn(
                       "relative overflow-hidden transition-all hover:shadow-lg",
-                      pack.discountPerCent > 0 && "border-primary shadow-md"
+                      pack.discountPerCent > 0 &&
+                        !pack.isFree &&
+                        "border-primary shadow-md"
                     )}
                   >
-                    {pack.discountPerCent > 0 && (
+                    {pack.discountPerCent > 0 && !pack.isFree && (
                       <div className="absolute right-0 top-0 h-16 w-16">
                         <div className="absolute right-0 top-0 h-16 w-16 rotate-45 translate-x-1/2 -translate-y-1/2 bg-primary text-xs text-primary-foreground">
                           <span className="absolute bottom-1 left-1/2 -translate-x-1/2 font-medium">
@@ -239,7 +225,16 @@ export function PricingModal({ open, onOpenChange }: PricingModalProps) {
                       <ul className="space-y-2 text-sm">
                         <li className="flex items-center">
                           <Check className="mr-2 h-4 w-4 text-primary" />
-                          {pack.coinsCount} {t("pricing.coins")}
+                          <div className="hover:cursor-pointer flex items-center gap-1.5 bg-amber-100 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 px-3 py-1.5 rounded-full font-medium text-sm transition-colors hover:bg-amber-200 dark:hover:bg-amber-950/60">
+                            <img
+                              src="/coin-small.png"
+                              alt="Coin"
+                              width={23}
+                              height={23}
+                            />
+                            <span>{pack.coinsCount}</span>
+                          </div>
+                          {/* {pack.coinsCount} {t("pricing.coins")} */}
                         </li>
                         {pack.bonusCount > 0 && (
                           <li className="flex items-center">
@@ -267,13 +262,16 @@ export function PricingModal({ open, onOpenChange }: PricingModalProps) {
                       <Button
                         className={cn(
                           "w-full",
-                          pack.discountPerCent > 0
+                          pack.discountPerCent > 0 && !pack.isFree
                             ? "bg-primary"
                             : "bg-primary/90"
                         )}
+                        disabled={pack.isFree}
                         onClick={() => handleSelectPlan(pack.name)}
                       >
-                        {t("pricing.select_plan")}
+                        {!pack.isFree
+                          ? t("pricing.select_plan")
+                          : t("pricing.selected_plan")}
                       </Button>
                     </CardFooter>
                   </Card>

@@ -75,6 +75,7 @@ export const translations: TranslationsType = {
     "common.idle": "Idle",
     "common.left": "Left",
     "common.clean": "Clean",
+    "common.close": "Close",
     "common.suspicious": "Suspicious",
     "common.no_data": "No data available",
     "common.waiting": "Waiting",
@@ -414,6 +415,7 @@ export const translations: TranslationsType = {
     "pricing.popular": "Popular",
     "pricing.per_month": "/month",
     "pricing.select_plan": "Select Plan",
+    "pricing.selected_plan": "Allready used",
     "pricing.basic": "Basic",
     "pricing.basic_desc": "Essential features for small tests",
     "pricing.standard": "Standard",
@@ -429,6 +431,9 @@ export const translations: TranslationsType = {
     "pricing.share_link": "Share this link with participants to join the test",
     "pricing.back_to_plans": "Back to Plans",
     "pricing.go_to_monitoring": "Go to Monitoring",
+    "pricing.payment": "Payment",
+    "pricing.payment_success":
+      "Payment successful! Your coins have been added.",
 
     // Grade Levels
     "grade.elementary": "Elementary School",
@@ -511,6 +516,7 @@ export const translations: TranslationsType = {
     "common.idle": "Неактивен",
     "common.left": "Покинул",
     "common.clean": "Чисто",
+    "common.close": "Закрыть",
     "common.suspicious": "Подозрительно",
     "common.no_data": "Нет доступных данных",
     "common.waiting": "Ожидание",
@@ -856,29 +862,34 @@ export const translations: TranslationsType = {
     "analytics.subject_chart": "Диаграмма распределения по предметам",
 
     // Pricing
-    "pricing.title": "Narxlash rejalari",
-    "pricing.subtitle": "Ehtiyojlaringizga eng mos keladigan rejani tanlang",
-    "pricing.popular": "Mashhur",
-    "pricing.per_month": "/oy",
-    "pricing.select_plan": "Rejani tanlash",
-    "pricing.basic": "Asosiy",
-    "pricing.basic_desc": "Kichik testlar uchun asosiy funksiyalar",
-    "pricing.standard": "Standart",
+    "pricing.title": "Тарифные планы",
+    "pricing.subtitle":
+      "Выберите план, который лучше всего подходит для ваших нужд",
+    "pricing.popular": "Популярный",
+    "pricing.per_month": "/месяц",
+    "pricing.select_plan": "Выбрать план",
+    "pricing.selected_plan": "Уже активен",
+    "pricing.basic": "Базовый",
+    "pricing.basic_desc": "Основные функции для небольших тестов",
+    "pricing.standard": "Стандарт",
     "pricing.standard_desc":
-      "Professional foydalanish uchun kengaytirilgan funksiyalar",
-    "pricing.premium": "Premium",
-    "pricing.premium_desc": "Korxona darajasidagi test yechimi",
-    "pricing.plan_selected": "Reja tanlandi",
-    "pricing.test_ready": "Testingiz ulashishga tayyor",
-    "pricing.unique_code": "Noyob kirish kodi",
+      "Расширенные функции для профессионального использования",
+    "pricing.premium": "Премиум",
+    "pricing.premium_desc": "Решение для тестирования корпоративного уровня",
+    "pricing.plan_selected": "План выбран",
+    "pricing.test_ready": "Ваш тест готов к распространению",
+    "pricing.unique_code": "Уникальный код доступа",
     "pricing.share_code":
-      "Testga qo'shilish uchun bu kodni ishtirokchilar bilan ulashing",
-    "pricing.scan_qr": "Testga qo'shilish uchun ushbu QR kodni skanerlang",
-    "pricing.invite_link": "Taklif havolasi",
+      "Поделитесь этим кодом с участниками для присоединения к тесту",
+    "pricing.scan_qr": "Сканируйте этот QR-код для присоединения к тесту",
+    "pricing.invite_link": "Ссылка-приглашение",
     "pricing.share_link":
-      "Testga qo'shilish uchun bu havolani ishtirokchilar bilan ulashing",
-    "pricing.back_to_plans": "Rejalarga qaytish",
-    "pricing.go_to_monitoring": "Monitoringga o'tish",
+      "Поделитесь этой ссылкой с участниками для присоединения к тесту",
+    "pricing.back_to_plans": "Назад к планам",
+    "pricing.go_to_monitoring": "Перейти к мониторингу",
+    "pricing.payment": "Оплата",
+    "pricing.payment_success":
+      "Платеж успешно выполнен! Ваши монеты были добавлены.",
 
     // Grade Levels
     "grade.elementary": "Начальная школа",
@@ -962,6 +973,7 @@ export const translations: TranslationsType = {
     "common.idle": "Nofaol",
     "common.left": "Chiqib ketdi",
     "common.clean": "Toza",
+    "common.close": "Yopish",
     "common.suspicious": "Shubhali",
     "common.no_data": "Ma'lumot mavjud emas",
     "common.waiting": "Kutilmoqda",
@@ -1318,6 +1330,7 @@ export const translations: TranslationsType = {
     "pricing.popular": "Mashhur",
     "pricing.per_month": "/oy",
     "pricing.select_plan": "Rejani tanlash",
+    "pricing.selected_plan": "Allaqachon aktiv",
     "pricing.basic": "Asosiy",
     "pricing.basic_desc": "Kichik testlar uchun asosiy funksiyalar",
     "pricing.standard": "Standart",
@@ -1336,6 +1349,9 @@ export const translations: TranslationsType = {
       "Testga qo'shilish uchun bu havolani ishtirokchilar bilan ulashing",
     "pricing.back_to_plans": "Rejalarga qaytish",
     "pricing.go_to_monitoring": "Monitoringga o'tish",
+    "pricing.payment": "To'lov",
+    "pricing.payment_success":
+      "To'lov muvaffaqiyatli yakunlandi! Tangalar hisobingizga qo'shildi.",
 
     // Grade Levels
     "grade.elementary": "Boshlang'ich maktab",
