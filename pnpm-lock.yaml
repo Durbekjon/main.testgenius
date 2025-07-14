@@ -161,11 +161,6 @@ importers:
       react-virtualized-auto-sizer:
         specifier: ^1.0.26
         version: 1.0.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      "react-visually-hidden\n":
-        specifier: |
-          link:@radix-ui/react-visually-hidden
-        version: |
-          link:@radix-ui/react-visually-hidden
       react-window:
         specifier: ^1.8.11
         version: 1.8.11(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
