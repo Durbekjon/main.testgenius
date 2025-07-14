@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react";
 
-export type Language = "en" | "ru" | "uz"
+export type Language = "en" | "ru" | "uz";
 
-type TranslationRecord = Record<string, string>
-type TranslationsType = Record<Language, TranslationRecord>
+type TranslationRecord = Record<string, string>;
+type TranslationsType = Record<Language, TranslationRecord>;
 
 type LanguageContextType = {
-  language: Language
-  setLanguage: (language: Language) => void
-  t: (key: string) => string
-  translations: TranslationsType
-}
+  language: Language;
+  setLanguage: (language: Language) => void;
+  t: (key: string) => string;
+  translations: TranslationsType;
+};
 
 export const translations: TranslationsType = {
   en: {
@@ -31,6 +31,7 @@ export const translations: TranslationsType = {
     "nav.reports": "Reports",
     "nav.coins_tooltip": "Available coins for generating tests",
     "nav.languange_tooltip": "Change language",
+    "nav.notifivation_tooltip": "Notifications",
     "nav.theme_tooltip": "Change theme",
     // Common
     "common.search": "Search",
@@ -42,6 +43,8 @@ export const translations: TranslationsType = {
     "common.loading": "Loading...",
     "common.upgrade": "Upgrade Plan",
     "common.save_changes": "Save Changes",
+    "common.error": "Error",
+    "common.not_enough_coins": "Not enough coins to generate a test",
     "common.saving": "Saving...",
     "common.edit": "Edit",
     "common.duplicate": "Duplicate",
@@ -79,7 +82,8 @@ export const translations: TranslationsType = {
     // Dashboard
     "dashboard.title": "Dashboard",
     "dashboard.subtitle": "Overview of your test activities and performance",
-    "dashboard.welcome": "Welcome back! Here's an overview of your test activities.",
+    "dashboard.welcome":
+      "Welcome back! Here's an overview of your test activities.",
     "dashboard.create": "Create New Test",
     "dashboard.total_tests": "Total Tests",
     "dashboard.active_users": "Active Users",
@@ -88,7 +92,8 @@ export const translations: TranslationsType = {
     "dashboard.analytics": "Analytics",
     "dashboard.reports": "Reports",
     "dashboard.activity": "Test Generation Activity",
-    "dashboard.activity_desc": "Number of tests generated over the past 30 days",
+    "dashboard.activity_desc":
+      "Number of tests generated over the past 30 days",
     "dashboard.recent": "Recent Activity",
     "dashboard.recent_desc": "Your latest test generation and editing activity",
     "dashboard.analytics_content": "Analytics Content",
@@ -127,7 +132,8 @@ export const translations: TranslationsType = {
     "auth.backend_endpoint": "Backend API endpoint:",
     "auth.backend_running": "Make sure your backend server is running.",
     "auth.reset_password": "Reset Your Password",
-    "auth.reset_instructions": "Enter your email to receive a password reset link",
+    "auth.reset_instructions":
+      "Enter your email to receive a password reset link",
     "auth.check_email": "Check Your Email",
     "auth.reset_link_sent": "We've sent a password reset link to",
     "auth.reset_email_info":
@@ -159,9 +165,11 @@ export const translations: TranslationsType = {
     "settings.appearance": "Appearance",
     "settings.advanced": "Advanced",
     "settings.password": "Password",
-    "settings.password.change": "Change your password or enable two-factor authentication.",
+    "settings.password.change":
+      "Change your password or enable two-factor authentication.",
     "settings.appearance.title": "Appearance Settings",
-    "settings.appearance.subtitle": "Customize the look and feel of your dashboard.",
+    "settings.appearance.subtitle":
+      "Customize the look and feel of your dashboard.",
     "settings.appearance.theme": "Theme Color",
     "settings.appearance.dark_mode": "Dark Mode",
     "settings.appearance.dark_mode.desc": "Toggle between light and dark mode.",
@@ -210,7 +218,8 @@ export const translations: TranslationsType = {
     "profile.twitter": "Twitter",
     "profile.linkedin": "LinkedIn",
     "profile.overview": "Overview",
-    "profile.overviewDescription": "Your profile overview and recent activities.",
+    "profile.overviewDescription":
+      "Your profile overview and recent activities.",
     "profile.activityStats": "Activity Stats",
     "profile.activityStatsDescription": "Your recent activity statistics.",
     "profile.testsCreated": "Tests Created",
@@ -281,21 +290,25 @@ export const translations: TranslationsType = {
     "monitor.completion_rate": "Completion Rate",
     "monitor.avg_time": "Average Time",
     "monitor.detailed_results": "Detailed Results",
-    "monitor.detailed_results_desc": "Comprehensive breakdown of individual performance",
+    "monitor.detailed_results_desc":
+      "Comprehensive breakdown of individual performance",
     "monitor.generate_report": "Generate Report",
     "monitor.export_results": "Export Results",
     "monitor.access_code": "Access Code",
     "monitor.qr_code": "QR Code",
     "monitor.waiting_participants": "Waiting for participants",
-    "monitor.participants_appear": "Participants will appear here once they join the test",
+    "monitor.participants_appear":
+      "Participants will appear here once they join the test",
     "monitor.no_results": "No results available",
-    "monitor.results_available": "Results will be available once participants complete the test",
+    "monitor.results_available":
+      "Results will be available once participants complete the test",
 
     // Saved Tests
     "saved.title": "Saved Tests",
     "saved.subtitle": "View and manage your saved tests",
     "saved.delete_test_title": "Delete Test",
-    "saved.delete_test_confirm_description": "This action cannot be undone. This will permanently delete the test",
+    "saved.delete_test_confirm_description":
+      "This action cannot be undone. This will permanently delete the test",
     "saved.delete_test_confirm_button": "Delete Test",
     "saved.delete_test_confirm_cancel": "Cancel",
     // Create Test
@@ -307,13 +320,16 @@ export const translations: TranslationsType = {
     "create.configure_test": "Configure test",
     "create.preview_test": "Preview test",
     "create.form_method": "Create from Form",
-    "create.form_desc": "Enter subject, topics, and other details to generate a test",
+    "create.form_desc":
+      "Enter subject, topics, and other details to generate a test",
     "create.form-file_method": "Create from File",
-    "create.form-file_desc": "Upload a file (PDF, DOCX) and select topics to generate a test",
+    "create.form-file_desc":
+      "Upload a file (PDF, DOCX) and select topics to generate a test",
     "create.upload_questions_file": "Upload questions file",
     "create.upload_answers_file": "Upload answers file",
     "create.book_method": "Create from Book",
-    "create.book_desc": "Upload a book (PDF, DOCX, TXT) and select topics to generate a test",
+    "create.book_desc":
+      "Upload a book (PDF, DOCX, TXT) and select topics to generate a test",
     "create.book_upload": "Book Upload",
     "create.drag_drop": "Drag and drop your file here",
     "create.file_types": "Supports PDF, DOCX, and TXT files",
@@ -322,7 +338,8 @@ export const translations: TranslationsType = {
     "create.process_book": "Process Book",
     "create.processing": "Processing book...",
     "create.extracted_topics": "Extracted Topics",
-    "create.select_topics": "Select the topics you want to include in your test",
+    "create.select_topics":
+      "Select the topics you want to include in your test",
     "create.required_info": "Required Information",
     "create.subject": "Subject",
     "create.subject_placeholder": "e.g., Mathematics, Physics, History",
@@ -337,7 +354,8 @@ export const translations: TranslationsType = {
     "create.number_of_sections": "Number of Sections",
     "create.questions_per_section": "Questions Per Section",
     "create.description": "Description",
-    "create.description_placeholder": "Add any specific instructions or context for the test",
+    "create.description_placeholder":
+      "Add any specific instructions or context for the test",
     "create.tags": "Tags",
     "create.tags_desc": "Add tags to categorize your test",
     "create.add_tag": "Add a tag",
@@ -348,11 +366,13 @@ export const translations: TranslationsType = {
     "create.save_test": "Save Test",
     "create.test_saved": "Test saved successfully!",
     "create.prompt": "Custom Instructions",
-    "create.prompt_placeholder": "Add any specific instructions or requirements for the test generation...",
+    "create.prompt_placeholder":
+      "Add any specific instructions or requirements for the test generation...",
 
     // Analytics
     "analytics.title": "Analytics Dashboard",
-    "analytics.subtitle": "Comprehensive insights into your test performance and user engagement.",
+    "analytics.subtitle":
+      "Comprehensive insights into your test performance and user engagement.",
     "analytics.overview": "Overview",
     "analytics.performance": "Performance",
     "analytics.subjects": "Subjects",
@@ -365,9 +385,11 @@ export const translations: TranslationsType = {
     "analytics.avg_score": "Average Score",
     "analytics.from_last_month": "from last month",
     "analytics.test_activity": "Test Activity",
-    "analytics.test_activity_desc": "Number of tests created and participants over time",
+    "analytics.test_activity_desc":
+      "Number of tests created and participants over time",
     "analytics.performance_dist": "Performance Distribution",
-    "analytics.performance_dist_desc": "Distribution of test scores across all participants",
+    "analytics.performance_dist_desc":
+      "Distribution of test scores across all participants",
     "analytics.subject_dist": "Subject Distribution",
     "analytics.subject_dist_desc": "Breakdown of tests by subject area",
     "analytics.recent_tests": "Recent Tests",
@@ -423,7 +445,8 @@ export const translations: TranslationsType = {
     "section.essay": "Essay",
     "section.matching": "Matching",
     "section.fill-in-blank": "Fill in the Blank",
-    "section.multiple-choice-desc": "Choose the best answer from multiple options",
+    "section.multiple-choice-desc":
+      "Choose the best answer from multiple options",
     "section.true-false-desc": "Determine if a statement is true or false",
     "section.short-answer-desc": "Provide brief written responses",
     "section.essay-desc": "Write detailed explanations or analysis",
@@ -444,6 +467,7 @@ export const translations: TranslationsType = {
     "nav.reports": "Отчеты",
     "nav.coins_tooltip": "Доступные монеты для создания тестов",
     "nav.languange_tooltip": "Изменить язык",
+    "nav.notifivation_tooltip": "Уведомления",
     "nav.theme_tooltip": "Изменить тему",
     // Common
     "common.search": "Поиск",
@@ -454,6 +478,8 @@ export const translations: TranslationsType = {
     "common.submit": "Отправить",
     "common.loading": "Загрузка...",
     "common.upgrade": "Улучшить план",
+    "common.error": "Ошибка",
+    "common.not_enough_coins": "Недостаточно монет для создания теста",
     "common.save_changes": "Сохранить изменения",
     "common.saving": "Сохранение...",
     "common.edit": "Редактировать",
@@ -491,8 +517,10 @@ export const translations: TranslationsType = {
 
     // Dashboard
     "dashboard.title": "Панель управления",
-    "dashboard.subtitle": "Обзор ваших тестовых активностей и производительности",
-    "dashboard.welcome": "С возвращением! Вот обзор ваших тестовых активностей.",
+    "dashboard.subtitle":
+      "Обзор ваших тестовых активностей и производительности",
+    "dashboard.welcome":
+      "С возвращением! Вот обзор ваших тестовых активностей.",
     "dashboard.create": "Создать новый тест",
     "dashboard.total_tests": "Всего тестов",
     "dashboard.active_users": "Активные пользователи",
@@ -501,9 +529,11 @@ export const translations: TranslationsType = {
     "dashboard.analytics": "Аналитика",
     "dashboard.reports": "Отчеты",
     "dashboard.activity": "Активность создания тестов",
-    "dashboard.activity_desc": "Количество тестов, созданных за последние 30 дней",
+    "dashboard.activity_desc":
+      "Количество тестов, созданных за последние 30 дней",
     "dashboard.recent": "Недавняя активность",
-    "dashboard.recent_desc": "Ваша последняя активность по созданию и редактированию тестов",
+    "dashboard.recent_desc":
+      "Ваша последняя активность по созданию и редактированию тестов",
     "dashboard.analytics_content": "Содержание аналитики",
     "dashboard.analytics_desc": "Здесь будет отображаться подробная аналитика",
     "dashboard.analytics_text":
@@ -522,10 +552,12 @@ export const translations: TranslationsType = {
     "auth.no_account": "Нет аккаунта?",
     "auth.has_account": "Уже есть аккаунт?",
     "auth.create_account": "Создайте свой аккаунт",
-    "auth.join": "Присоединяйтесь к TestGenius AI для создания и управления тестами",
+    "auth.join":
+      "Присоединяйтесь к TestGenius AI для создания и управления тестами",
     "auth.verify_email": "Подтвердите вашу электронную почту",
     "auth.verify_code": "Мы отправили 6-значный код на",
-    "auth.enter_code": "Введите 6-значный код, отправленный на вашу электронную почту",
+    "auth.enter_code":
+      "Введите 6-значный код, отправленный на вашу электронную почту",
     "auth.resend_code": "Отправить код повторно",
     "auth.resend_in": "Повторная отправка через",
     "auth.verify_continue": "Подтвердить и продолжить",
@@ -540,7 +572,8 @@ export const translations: TranslationsType = {
     "auth.backend_endpoint": "Конечная точка бэкенда:",
     "auth.backend_running": "Убедитесь, что ваш сервер бэкенда запущен.",
     "auth.reset_password": "Сбросить пароль",
-    "auth.reset_instructions": "Введите вашу электронную почту, чтобы получить ссылку для сброса пароля",
+    "auth.reset_instructions":
+      "Введите вашу электронную почту, чтобы получить ссылку для сброса пароля",
     "auth.check_email": "Проверьте вашу электронную почту",
     "auth.reset_link_sent": "Мы отправили ссылку для сброса пароля на",
     "auth.reset_email_info":
@@ -564,7 +597,8 @@ export const translations: TranslationsType = {
 
     // Settings
     "settings.title": "Настройки",
-    "settings.subtitle": "Управляйте настройками вашего аккаунта и предпочтениями.",
+    "settings.subtitle":
+      "Управляйте настройками вашего аккаунта и предпочтениями.",
     "settings.general": "Общие",
     "settings.security": "Безопасность",
     "settings.notifications": "Уведомления",
@@ -572,12 +606,15 @@ export const translations: TranslationsType = {
     "settings.appearance": "Внешний вид",
     "settings.advanced": "Расширенные",
     "settings.password": "Пароль",
-    "settings.password.change": "Измените пароль или включите двухфакторную аутентификацию.",
+    "settings.password.change":
+      "Измените пароль или включите двухфакторную аутентификацию.",
     "settings.appearance.title": "Настройки внешнего вида",
-    "settings.appearance.subtitle": "Настройте внешний вид вашей панели управления.",
+    "settings.appearance.subtitle":
+      "Настройте внешний вид вашей панели управления.",
     "settings.appearance.theme": "Цветовая тема",
     "settings.appearance.dark_mode": "Темный режим",
-    "settings.appearance.dark_mode.desc": "Переключение между светлым и темным режимом.",
+    "settings.appearance.dark_mode.desc":
+      "Переключение между светлым и темным режимом.",
     "settings.appearance.font_size": "Размер шрифта",
     "settings.appearance.reset": "Сбросить настройки",
     "settings.general_info": "Общая информация",
@@ -599,7 +636,8 @@ export const translations: TranslationsType = {
 
     // Profile
     "profile.title": "Профиль",
-    "profile.subtitle": "Управляйте вашей личной информацией и публичным профилем.",
+    "profile.subtitle":
+      "Управляйте вашей личной информацией и публичным профилем.",
     "profile.personalInformations": "Личная информация",
     "profile.name": "Имя",
     "profile.lastName": "Фамилия",
@@ -694,22 +732,27 @@ export const translations: TranslationsType = {
     "monitor.completion_rate": "Процент завершения",
     "monitor.avg_time": "Среднее время",
     "monitor.detailed_results": "Подробные результаты",
-    "monitor.detailed_results_desc": "Комплексный анализ индивидуальной производительности",
+    "monitor.detailed_results_desc":
+      "Комплексный анализ индивидуальной производительности",
     "monitor.generate_report": "Создать отчет",
     "monitor.export_results": "Экспорт результатов",
     "monitor.access_code": "Код доступа",
     "monitor.qr_code": "QR-код",
     "monitor.waiting_participants": "Ожидание участников",
-    "monitor.participants_appear": "Участники появятся здесь, когда присоединятся к тесту",
+    "monitor.participants_appear":
+      "Участники появятся здесь, когда присоединятся к тесту",
     "monitor.no_results": "Нет доступных результатов",
-    "monitor.results_available": "Результаты будут доступны после завершения теста участниками",
+    "monitor.results_available":
+      "Результаты будут доступны после завершения теста участниками",
 
     // Saved Tests
     "saved.title": "Сохраненные тесты",
     "saved.subtitle": "Просмотр и управление сохраненными тестами",
     "saved.delete_test_title": "Testni o'chirish",
-    "saved.delete_test_description": "Bu amalni bekor qilish mumkin emas. Testni o'chirish",
-    "saved.delete_test_confirm_description": "Bu amalni bekor qilish mumkin emas. Testni o'chirish",
+    "saved.delete_test_description":
+      "Bu amalni bekor qilish mumkin emas. Testni o'chirish",
+    "saved.delete_test_confirm_description":
+      "Bu amalni bekor qilish mumkin emas. Testni o'chirish",
     "saved.delete_test_confirm_button": "Testni o'chirish",
     "saved.delete_test_confirm_cancel": "Bekor qilish",
     // Create Test
@@ -721,13 +764,16 @@ export const translations: TranslationsType = {
     "create.configure_test": "Настройка теста",
     "create.preview_test": "Предпросмотр теста",
     "create.form_method": "Создать из формы",
-    "create.form_desc": "Введите предмет, темы и другие детали для создания теста",
+    "create.form_desc":
+      "Введите предмет, темы и другие детали для создания теста",
     "create.form-file_method": "Создать из файла",
-    "create.form-file_desc": "Загрузите файл (PDF, DOCX) и выберите темы для создания теста",
+    "create.form-file_desc":
+      "Загрузите файл (PDF, DOCX) и выберите темы для создания теста",
     "create.upload_questions_file": "Загрузить файл с вопросами",
     "create.upload_answers_file": "Загрузить файл с ответами",
     "create.book_method": "Создать из книги",
-    "create.book_desc": "Загрузите книгу (PDF, DOCX, TXT) и выберите темы для создания теста",
+    "create.book_desc":
+      "Загрузите книгу (PDF, DOCX, TXT) и выберите темы для создания теста",
     "create.book_upload": "Загрузка книги",
     "create.drag_drop": "Перетащите файл сюда",
     "create.file_types": "Поддерживаются файлы PDF, DOCX и TXT",
@@ -742,16 +788,19 @@ export const translations: TranslationsType = {
     "create.subject_placeholder": "например, Математика, Физика, История",
     "create.grade_level": "Уровень образования",
     "create.topic": "Тема",
-    "create.topic_placeholder": "например, Алгебра, Вторая мировая война, Фотосинтез",
+    "create.topic_placeholder":
+      "например, Алгебра, Вторая мировая война, Фотосинтез",
     "create.question_types": "Типы вопросов",
     "create.select_question_types": "Выберите хотя бы один тип вопроса",
     "create.additional_options": "Дополнительные опции",
     "create.test_title": "Название теста",
-    "create.test_title_placeholder": "например, Промежуточный экзамен, Тест по главе 5",
+    "create.test_title_placeholder":
+      "например, Промежуточный экзамен, Тест по главе 5",
     "create.number_of_sections": "Количество разделов",
     "create.questions_per_section": "Вопросов в разделе",
     "create.description": "Описание",
-    "create.description_placeholder": "Добавьте конкретные инструкции или контекст для теста",
+    "create.description_placeholder":
+      "Добавьте конкретные инструкции или контекст для теста",
     "create.tags": "Теги",
     "create.tags_desc": "Добавьте теги для категоризации теста",
     "create.add_tag": "Добавить тег",
@@ -764,11 +813,13 @@ export const translations: TranslationsType = {
     "create.drag_drop_desc": "PDF, DOCX yoki TXT fayl yuklang",
     "create.browse": "Fayllarni tanlash",
     "create.prompt": "Maxsus ko'rsatmalar",
-    "create.prompt_placeholder": "Test yaratish uchun har qanday maxsus ko'rsatmalar yoki talablarni qo'shing...",
+    "create.prompt_placeholder":
+      "Test yaratish uchun har qanday maxsus ko'rsatmalar yoki talablarni qo'shing...",
 
     // Analytics
     "analytics.title": "Панель аналитики",
-    "analytics.subtitle": "Комплексный анализ эффективности тестов и вовлеченности пользователей.",
+    "analytics.subtitle":
+      "Комплексный анализ эффективности тестов и вовлеченности пользователей.",
     "analytics.overview": "Обзор",
     "analytics.performance": "Производительность",
     "analytics.subjects": "Предметы",
@@ -781,9 +832,11 @@ export const translations: TranslationsType = {
     "analytics.avg_score": "Средний балл",
     "analytics.from_last_month": "с прошлого месяца",
     "analytics.test_activity": "Активность тестирования",
-    "analytics.test_activity_desc": "Количество созданных тестов и участников с течением времени",
+    "analytics.test_activity_desc":
+      "Количество созданных тестов и участников с течением времени",
     "analytics.performance_dist": "Распределение производительности",
-    "analytics.performance_dist_desc": "Распределение результатов тестов среди всех участников",
+    "analytics.performance_dist_desc":
+      "Распределение результатов тестов среди всех участников",
     "analytics.subject_dist": "Распределение по предметам",
     "analytics.subject_dist_desc": "Разбивка тестов по предметным областям",
     "analytics.recent_tests": "Недавние тесты",
@@ -811,16 +864,19 @@ export const translations: TranslationsType = {
     "pricing.basic": "Asosiy",
     "pricing.basic_desc": "Kichik testlar uchun asosiy funksiyalar",
     "pricing.standard": "Standart",
-    "pricing.standard_desc": "Professional foydalanish uchun kengaytirilgan funksiyalar",
+    "pricing.standard_desc":
+      "Professional foydalanish uchun kengaytirilgan funksiyalar",
     "pricing.premium": "Premium",
     "pricing.premium_desc": "Korxona darajasidagi test yechimi",
     "pricing.plan_selected": "Reja tanlandi",
     "pricing.test_ready": "Testingiz ulashishga tayyor",
     "pricing.unique_code": "Noyob kirish kodi",
-    "pricing.share_code": "Testga qo'shilish uchun bu kodni ishtirokchilar bilan ulashing",
+    "pricing.share_code":
+      "Testga qo'shilish uchun bu kodni ishtirokchilar bilan ulashing",
     "pricing.scan_qr": "Testga qo'shilish uchun ushbu QR kodni skanerlang",
     "pricing.invite_link": "Taklif havolasi",
-    "pricing.share_link": "Testga qo'shilish uchun bu havolani ishtirokchilar bilan ulashing",
+    "pricing.share_link":
+      "Testga qo'shilish uchun bu havolani ishtirokchilar bilan ulashing",
     "pricing.back_to_plans": "Rejalarga qaytish",
     "pricing.go_to_monitoring": "Monitoringga o'tish",
 
@@ -839,8 +895,10 @@ export const translations: TranslationsType = {
     "section.essay": "Эссе",
     "section.matching": "Соответствие",
     "section.fill-in-blank": "Заполнить пропуск",
-    "section.multiple-choice-desc": "Выберите лучший ответ из нескольких вариантов",
-    "section.true-false-desc": "Определите, является ли утверждение верным или ложным",
+    "section.multiple-choice-desc":
+      "Выберите лучший ответ из нескольких вариантов",
+    "section.true-false-desc":
+      "Определите, является ли утверждение верным или ложным",
     "section.short-answer-desc": "Представьте краткие письменные ответы",
     "section.essay-desc": "Напишите подробные объяснения или анализ",
     "section.matching-desc": "Сопоставьте элементы из двух столбцов",
@@ -860,6 +918,7 @@ export const translations: TranslationsType = {
     "nav.reports": "Hisobotlar",
     "nav.coins_tooltip": "Test yaratish uchun mavjud pul miqdori",
     "nav.languange_tooltip": "Tilni o'zgartirish",
+    "nav.notifivation_tooltip": "Bildirishnomalar",
     "nav.theme_tooltip": "Rang mavzusini o'zgartirish",
     // Common
     "common.search": "Qidirish",
@@ -870,6 +929,8 @@ export const translations: TranslationsType = {
     "common.submit": "Yuborish",
     "common.loading": "Yuklanmoqda...",
     "common.upgrade": "Tarifni yangilash",
+    "common.error": "Xato",
+    "common.not_enough_coins": "Test yaratish uchun tanga yetarli emas",
     "common.save_changes": "O'zgarishlarni saqlash",
     "common.saving": "Saqlanmoqda...",
     "common.edit": "Tahrirlash",
@@ -907,8 +968,10 @@ export const translations: TranslationsType = {
 
     // Dashboard
     "dashboard.title": "Boshqaruv paneli",
-    "dashboard.subtitle": "Test faoliyatingiz va samaradorligingiz haqida umumiy ma'lumot",
-    "dashboard.welcome": "Qaytib kelganingiz bilan! Bu yerda test faoliyatingiz haqida umumiy ma'lumot.",
+    "dashboard.subtitle":
+      "Test faoliyatingiz va samaradorligingiz haqida umumiy ma'lumot",
+    "dashboard.welcome":
+      "Qaytib kelganingiz bilan! Bu yerda test faoliyatingiz haqida umumiy ma'lumot.",
     "dashboard.create": "Yangi test yaratish",
     "dashboard.total_tests": "Jami testlar",
     "dashboard.active_users": "Faol foydalanuvchilar",
@@ -919,7 +982,8 @@ export const translations: TranslationsType = {
     "dashboard.activity": "Test yaratish faoliyati",
     "dashboard.activity_desc": "So'nggi 30 kun ichida yaratilgan testlar soni",
     "dashboard.recent": "So'nggi faoliyat",
-    "dashboard.recent_desc": "Sizning so'nggi test yaratish va tahrirlash faoliyatingiz",
+    "dashboard.recent_desc":
+      "Sizning so'nggi test yaratish va tahrirlash faoliyatingiz",
     "dashboard.analytics_content": "Tahlillar mazmuni",
     "dashboard.analytics_desc": "Batafsil tahlillar shu yerda ko'rsatiladi",
     "dashboard.analytics_text":
@@ -938,10 +1002,12 @@ export const translations: TranslationsType = {
     "auth.no_account": "Hisobingiz yo'qmi?",
     "auth.has_account": "Hisobingiz bormi?",
     "auth.create_account": "Hisobingizni yarating",
-    "auth.join": "Testlarni yaratish va boshqarish uchun TestGenius AI ga qo'shiling",
+    "auth.join":
+      "Testlarni yaratish va boshqarish uchun TestGenius AI ga qo'shiling",
     "auth.verify_email": "Elektron pochtangizni tasdiqlang",
     "auth.verify_code": "Biz 6 raqamli kodni yubordik",
-    "auth.enter_code": "Elektron pochtangizga yuborilgan 6 raqamli kodni kiriting",
+    "auth.enter_code":
+      "Elektron pochtangizga yuborilgan 6 raqamli kodni kiriting",
     "auth.resend_code": "Kodni qayta yuborish",
     "auth.resend_in": "Kodni qayta yuborish vaqti",
     "auth.verify_continue": "Tasdiqlash va davom etish",
@@ -949,14 +1015,17 @@ export const translations: TranslationsType = {
     "auth.creating_account": "Hisob yaratilmoqda...",
     "auth.verifying": "Tasdiqlanmoqda...",
     "auth.or_signup_with": "yoki bular orqali ro'yxatdan o'ting",
-    "auth.welcome_back": "Qaytib kelganingiz bilan! Iltimos, ma'lumotlaringizni kiriting.",
+    "auth.welcome_back":
+      "Qaytib kelganingiz bilan! Iltimos, ma'lumotlaringizni kiriting.",
     "auth.signin_with": "yoki bular orqali davom eting",
     "auth.signing_in": "Kirilmoqda...",
     "auth.dev_mode": "Ishlab chiqish rejimi",
     "auth.backend_endpoint": "Backend endpointi:",
-    "auth.backend_running": "Backend serveringiz ishlab turganiga ishonch hosil qiling.",
+    "auth.backend_running":
+      "Backend serveringiz ishlab turganiga ishonch hosil qiling.",
     "auth.reset_password": "Parolni tiklash",
-    "auth.reset_instructions": "Parolni tiklash havolasini olish uchun elektron pochtangizni kiriting",
+    "auth.reset_instructions":
+      "Parolni tiklash havolasini olish uchun elektron pochtangizni kiriting",
     "auth.check_email": "Elektron pochtangizni tekshiring",
     "auth.reset_link_sent": "Biz parolni tiklash havolasini yubordik",
     "auth.reset_email_info":
@@ -988,12 +1057,15 @@ export const translations: TranslationsType = {
     "settings.appearance": "Ko'rinish",
     "settings.advanced": "Kengaytirilgan",
     "settings.password": "Parol",
-    "settings.password.change": "Parolingizni o'zgartiring yoki ikki faktorli autentifikatsiyani yoqing.",
+    "settings.password.change":
+      "Parolingizni o'zgartiring yoki ikki faktorli autentifikatsiyani yoqing.",
     "settings.appearance.title": "Ko'rinish sozlamalari",
-    "settings.appearance.subtitle": "Boshqaruv panelingizning ko'rinishini sozlang.",
+    "settings.appearance.subtitle":
+      "Boshqaruv panelingizning ko'rinishini sozlang.",
     "settings.appearance.theme": "Rang mavzusi",
     "settings.appearance.dark_mode": "Qorong'i rejim",
-    "settings.appearance.dark_mode.desc": "Yorug' va qorong'i rejim o'rtasida almashtirish.",
+    "settings.appearance.dark_mode.desc":
+      "Yorug' va qorong'i rejim o'rtasida almashtirish.",
     "settings.appearance.font_size": "Shrift o'lchami",
     "settings.appearance.reset": "Standart sozlamalarga qaytarish",
     "settings.general_info": "Umumiy ma'lumot",
@@ -1015,7 +1087,8 @@ export const translations: TranslationsType = {
 
     // Profile
     "profile.title": "Profil",
-    "profile.subtitle": "Shaxsiy ma'lumotlaringiz va ommaviy profilingizni boshqaring.",
+    "profile.subtitle":
+      "Shaxsiy ma'lumotlaringiz va ommaviy profilingizni boshqaring.",
     "profile.personalInformations": "Shaxsiy ma'lumotlaringiz",
     "profile.name": "Ismingiz",
     "profile.lastName": "Familiyangiz",
@@ -1039,15 +1112,18 @@ export const translations: TranslationsType = {
     "profile.twitter": "Twitter",
     "profile.linkedin": "LinkedIn",
     "profile.overview": "Umumiy ko'rinish",
-    "profile.overviewDescription": "Profilingiz umumiy ko'rinishi va so'nggi faoliyatlar.",
+    "profile.overviewDescription":
+      "Profilingiz umumiy ko'rinishi va so'nggi faoliyatlar.",
     "profile.activityStats": "Faoliyat statistikasi",
-    "profile.activityStatsDescription": "Sizning so'nggi faoliyatingiz statistikasi.",
+    "profile.activityStatsDescription":
+      "Sizning so'nggi faoliyatingiz statistikasi.",
     "profile.testsCreated": "Yaratilgan testlar",
     "profile.activeStudents": "Faol talabalar",
     "profile.completionRate": "Tugatish darajasi",
     "profile.averageScore": "O'rtacha ball",
     "profile.recentActivity": "So'nggi faoliyat",
-    "profile.recentActivityDescription": "Sizning so'nggi faoliyat jurnallaringiz.",
+    "profile.recentActivityDescription":
+      "Sizning so'nggi faoliyat jurnallaringiz.",
     "profile.tests": "Testlar",
     "profile.students": "Talabalar",
     "profile.results": "Natijalar",
@@ -1110,22 +1186,27 @@ export const translations: TranslationsType = {
     "monitor.completion_rate": "Tugatish darajasi",
     "monitor.avg_time": "O'rtacha vaqt",
     "monitor.detailed_results": "Batafsil natijalar",
-    "monitor.detailed_results_desc": "Individual ko'rsatkichlarning batafsil tahlili",
+    "monitor.detailed_results_desc":
+      "Individual ko'rsatkichlarning batafsil tahlili",
     "monitor.generate_report": "Hisobot yaratish",
     "monitor.export_results": "Natijalarni eksport qilish",
     "monitor.access_code": "Kirish kodi",
     "monitor.qr_code": "QR kod",
     "monitor.waiting_participants": "Ishtirokchilar kutilmoqda",
-    "monitor.participants_appear": "Ishtirokchilar testga qo'shilganda shu yerda paydo bo'ladi",
+    "monitor.participants_appear":
+      "Ishtirokchilar testga qo'shilganda shu yerda paydo bo'ladi",
     "monitor.no_results": "Natijalar mavjud emas",
-    "monitor.results_available": "Natijalar ishtirokchilar testni tugatgandan so'ng mavjud bo'ladi",
+    "monitor.results_available":
+      "Natijalar ishtirokchilar testni tugatgandan so'ng mavjud bo'ladi",
 
     // Saved Tests
     "saved.title": "Saqlangan testlar",
     "saved.subtitle": "Saqlangan testlarni ko'rish va boshqarish",
     "saved.delete_test_title": "Testni o'chirish",
-    "saved.delete_test_description": "Bu amalni bekor qilish mumkin emas. Testni o'chirish",
-    "saved.delete_test_confirm_description": "Bu amalni bekor qilish mumkin emas. Testni o'chirish",
+    "saved.delete_test_description":
+      "Bu amalni bekor qilish mumkin emas. Testni o'chirish",
+    "saved.delete_test_confirm_description":
+      "Bu amalni bekor qilish mumkin emas. Testni o'chirish",
     "saved.delete_test_confirm_button": "Testni o'chirish",
     "saved.delete_test_confirm_cancel": "Bekor qilish",
     // Create Test
@@ -1137,13 +1218,16 @@ export const translations: TranslationsType = {
     "create.configure_test": "Testni sozlash",
     "create.preview_test": "Testni ko'rib chiqish",
     "create.form_method": "Forma orqali yaratish",
-    "create.form_desc": "Test yaratish uchun fan, mavzular va boshqa ma'lumotlarni kiriting",
+    "create.form_desc":
+      "Test yaratish uchun fan, mavzular va boshqa ma'lumotlarni kiriting",
     "create.form-file_method": "Allaqachon yaratilgan testdan yaratish",
-    "create.form-file_desc": "Allaqachon yaratilgan testdan yaratish uchun testni yuklang",
+    "create.form-file_desc":
+      "Allaqachon yaratilgan testdan yaratish uchun testni yuklang",
     "create.upload_questions_file": "Savollar faylini yuklash",
     "create.upload_answers_file": "Javoblar faylini yuklash",
     "create.book_method": "Kitob orqali yaratish",
-    "create.book_desc": "Kitobni yuklang (PDF, DOCX, TXT) va test yaratish uchun mavzularni tanlang",
+    "create.book_desc":
+      "Kitobni yuklang (PDF, DOCX, TXT) va test yaratish uchun mavzularni tanlang",
     "create.book_upload": "Kitob yuklash",
     "create.drag_drop": "Faylingizni shu yerga tashlang",
     "create.file_types": "PDF, DOCX va TXT fayllar qo'llab-quvvatlanadi",
@@ -1152,24 +1236,29 @@ export const translations: TranslationsType = {
     "create.process_book": "Kitobni qayta ishlash",
     "create.processing": "Kitob qayta ishlanmoqda...",
     "create.extracted_topics": "Ajratilgan mavzular",
-    "create.select_topics": "Testingizga kiritmoqchi bo'lgan mavzularni tanlang",
+    "create.select_topics":
+      "Testingizga kiritmoqchi bo'lgan mavzularni tanlang",
     "create.required_info": "Majburiy ma'lumotlar",
     "create.subject": "Fan",
     "create.subject_placeholder": "masalan, Matematika, Fizika, Tarix",
     "create.grade_level": "O'quv darajasi",
     "create.topic": "Mavzu",
-    "create.topic_placeholder": "masalan, Algebra, Ikkinchi jahon urushi, Fotosintez",
+    "create.topic_placeholder":
+      "masalan, Algebra, Ikkinchi jahon urushi, Fotosintez",
     "create.question_types": "Savol turlari",
     "create.select_question_types": "Kamida bitta savol turini tanlang",
     "create.additional_options": "Qo'shimcha parametrlar",
     "create.test_title": "Test nomi",
-    "create.test_title_placeholder": "masalan, Oraliq imtihon, 5-bob bo'yicha test",
+    "create.test_title_placeholder":
+      "masalan, Oraliq imtihon, 5-bob bo'yicha test",
     "create.number_of_sections": "Bo'limlar soni",
     "create.questions_per_section": "Bo'limdagi savollar soni",
     "create.description": "Tavsif",
-    "create.description_placeholder": "Test uchun maxsus ko'rsatmalar yoki kontekst qo'shing",
+    "create.description_placeholder":
+      "Test uchun maxsus ko'rsatmalar yoki kontekst qo'shing",
     "create.tags": "Teglar",
-    "create.tags_desc": "Testingizni kategorizatsiya qilish uchun teglar qo'shing",
+    "create.tags_desc":
+      "Testingizni kategorizatsiya qilish uchun teglar qo'shing",
     "create.add_tag": "Teg qo'shish",
     "create.generating": "Yaratilmoqda...",
     "create.generate_ai": "AI bilan yaratish ",
@@ -1180,11 +1269,13 @@ export const translations: TranslationsType = {
     "create.drag_drop_desc": "PDF, DOCX yoki TXT fayl yuklang",
     "create.browse": "Fayllarni tanlash",
     "create.prompt": "Maxsus ko'rsatmalar",
-    "create.prompt_placeholder": "Test yaratish uchun har qanday maxsus ko'rsatmalar yoki talablarni qo'shing...",
+    "create.prompt_placeholder":
+      "Test yaratish uchun har qanday maxsus ko'rsatmalar yoki talablarni qo'shing...",
 
     // Analytics
     "analytics.title": "Tahlillar paneli",
-    "analytics.subtitle": "Test samaradorligi va foydalanuvchilar faolligi bo'yicha keng qamrovli ma'lumotlar.",
+    "analytics.subtitle":
+      "Test samaradorligi va foydalanuvchilar faolligi bo'yicha keng qamrovli ma'lumotlar.",
     "analytics.overview": "Umumiy ko'rinish",
     "analytics.performance": "Samaradorlik",
     "analytics.subjects": "Fanlar",
@@ -1197,11 +1288,14 @@ export const translations: TranslationsType = {
     "analytics.avg_score": "O'rtacha ball",
     "analytics.from_last_month": "o'tgan oydan",
     "analytics.test_activity": "Test faoliyati",
-    "analytics.test_activity_desc": "Vaqt davomida yaratilgan testlar va ishtirokchilar soni",
+    "analytics.test_activity_desc":
+      "Vaqt davomida yaratilgan testlar va ishtirokchilar soni",
     "analytics.performance_dist": "Samaradorlik taqsimoti",
-    "analytics.performance_dist_desc": "Barcha ishtirokchilar orasida test natijalarining taqsimlanishi",
+    "analytics.performance_dist_desc":
+      "Barcha ishtirokchilar orasida test natijalarining taqsimlanishi",
     "analytics.subject_dist": "Fanlar bo'yicha taqsimot",
-    "analytics.subject_dist_desc": "Testlarning fan sohalari bo'yicha taqsimlanishi",
+    "analytics.subject_dist_desc":
+      "Testlarning fan sohalari bo'yicha taqsimlanishi",
     "analytics.recent_tests": "So'nggi testlar",
     "analytics.view_all": "Barchasini ko'rish",
     "analytics.test_name": "Test nomi",
@@ -1227,16 +1321,19 @@ export const translations: TranslationsType = {
     "pricing.basic": "Asosiy",
     "pricing.basic_desc": "Kichik testlar uchun asosiy funksiyalar",
     "pricing.standard": "Standart",
-    "pricing.standard_desc": "Professional foydalanish uchun kengaytirilgan funksiyalar",
+    "pricing.standard_desc":
+      "Professional foydalanish uchun kengaytirilgan funksiyalar",
     "pricing.premium": "Premium",
     "pricing.premium_desc": "Korxona darajasidagi test yechimi",
     "pricing.plan_selected": "Reja tanlandi",
     "pricing.test_ready": "Testingiz ulashishga tayyor",
     "pricing.unique_code": "Noyob kirish kodi",
-    "pricing.share_code": "Testga qo'shilish uchun bu kodni ishtirokchilar bilan ulashing",
+    "pricing.share_code":
+      "Testga qo'shilish uchun bu kodni ishtirokchilar bilan ulashing",
     "pricing.scan_qr": "Testga qo'shilish uchun ushbu QR kodni skanerlang",
     "pricing.invite_link": "Taklif havolasi",
-    "pricing.share_link": "Testga qo'shilish uchun bu havolani ishtirokchilar bilan ulashing",
+    "pricing.share_link":
+      "Testga qo'shilish uchun bu havolani ishtirokchilar bilan ulashing",
     "pricing.back_to_plans": "Rejalarga qaytish",
     "pricing.go_to_monitoring": "Monitoringga o'tish",
 
@@ -1256,59 +1353,66 @@ export const translations: TranslationsType = {
     "section.matching": "Moslashtirish",
     "section.fill-in-blank": "Bo'sh joyni to'ldirish",
     "section.multiple-choice-desc": "Votingizda eng yaxshi javobni tanlang",
-    "section.true-false-desc": "Agar aytish to'g'ri yoki noto'g'ri ekanini aniqlang",
+    "section.true-false-desc":
+      "Agar aytish to'g'ri yoki noto'g'ri ekanini aniqlang",
     "section.short-answer-desc": "Qisqa yozuvli javoblarni kiriting",
     "section.essay-desc": "To'liq tushuntirish yoki tahlil yozishing",
-    "section.matching-desc": "Ikkita qator orasidagi elementlarni moslashtiring",
-    "section.fill-in-blank-desc": "Ixtiyoriy so'zlar bilan to'ldirilgan matnlar",
+    "section.matching-desc":
+      "Ikkita qator orasidagi elementlarni moslashtiring",
+    "section.fill-in-blank-desc":
+      "Ixtiyoriy so'zlar bilan to'ldirilgan matnlar",
   },
-}
+};
 
 const LanguageContext = createContext<LanguageContextType>({
   language: "en",
   setLanguage: () => {},
   t: () => "",
   translations,
-})
+});
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("en")
-  const [mounted, setMounted] = useState(false)
+  const [language, setLanguageState] = useState<Language>("en");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-    const savedLanguage = localStorage.getItem("language") as Language
+    setMounted(true);
+    const savedLanguage = localStorage.getItem("language") as Language;
     if (savedLanguage && ["en", "ru", "uz"].includes(savedLanguage)) {
-      setLanguageState(savedLanguage)
+      setLanguageState(savedLanguage);
     }
-  }, [])
+  }, []);
 
   const setLanguage = (newLanguage: Language) => {
-    setLanguageState(newLanguage)
+    setLanguageState(newLanguage);
     if (typeof window !== "undefined") {
-      localStorage.setItem("language", newLanguage)
+      localStorage.setItem("language", newLanguage);
     }
-  }
+  };
 
   const t = (key: string): string => {
-    const currentTranslations = translations[language] || translations.en
-    return currentTranslations[key] || key
-  }
+    const currentTranslations = translations[language] || translations.en;
+    return currentTranslations[key] || key;
+  };
 
   // Prevent hydration mismatch
   if (!mounted) {
-    return <div style={{ visibility: "hidden" }}>{children}</div>
+    return <div style={{ visibility: "hidden" }}>{children}</div>;
   }
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, translations }}>{children}</LanguageContext.Provider>
-  )
+    <LanguageContext.Provider
+      value={{ language, setLanguage, t, translations }}
+    >
+      {children}
+    </LanguageContext.Provider>
+  );
 }
 
 export const useLanguage = () => {
-  const context = useContext(LanguageContext)
+  const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error("useLanguage must be used within a LanguageProvider")
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
-  return context
-}
+  return context;
+};

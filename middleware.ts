@@ -1,7 +1,7 @@
 // Create a new middleware file at the root of the project
 
-import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 // Define paths that don't require authentication
 const publicPaths = [
@@ -11,28 +11,43 @@ const publicPaths = [
   "/auth/forgot-password",
   "/auth/reset-password",
   "/auth/callback/google",
-]
+];
 
 // Define auth-only paths that should redirect to dashboard if authenticated
-const authOnlyPaths = ["/auth/signin", "/auth/signup"]
+const authOnlyPaths = ["/auth/signin", "/auth/signup"];
+const dashboardRoot = "/dashboard";
 
 // Token key name for consistency
-const ACCESS_TOKEN_KEY = "access_token"
+const ACCESS_TOKEN_KEY = "access_token";
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
+  const { pathname } = request.nextUrl;
 
-  const isPublicPath = publicPaths.some((path) => pathname.startsWith(path))
-  const isAuthOnlyPath = authOnlyPaths.some((path) => pathname.startsWith(path))
+  const isPublicPath = publicPaths.some((path) => pathname.startsWith(path));
+  const isAuthOnlyPath = authOnlyPaths.some((path) =>
+    pathname.startsWith(path)
+  );
+  const isDashboardPath = pathname.startsWith(dashboardRoot);
 
-  // Note: Since we use localStorage for tokens, middleware can't access them
-  // This middleware will only handle basic route protection
-  // Client-side authentication checks are handled by the AuthProvider
+  // Get the access token from cookies
+  const accessToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value;
 
-  // For now, allow all requests and let client-side handle auth
-  // In a production environment, you might want to implement server-side session validation
-  
-  return NextResponse.next()
+  // If accessing dashboard and not authenticated, redirect to signin
+  if (isDashboardPath && !accessToken) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/auth/signin";
+    return NextResponse.redirect(url);
+  }
+
+  // If accessing auth-only page and authenticated, redirect to dashboard
+  if (isAuthOnlyPath && accessToken) {
+    const url = request.nextUrl.clone();
+    url.pathname = dashboardRoot;
+    return NextResponse.redirect(url);
+  }
+
+  // Otherwise, allow
+  return NextResponse.next();
 }
 
 // Configure the middleware to run on specific paths
@@ -41,4 +56,4 @@ export const config = {
     // Apply to all routes except static files, api routes, and _next
     "/((?!_next/static|_next/image|favicon.ico|api).*)",
   ],
-}
+};
